@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 
+
 class ContactInfo extends StatelessWidget {
-  const ContactInfo({super.key});
+  const ContactInfo({
+    super.key, 
+    required this.nombre, 
+    required this.telefono, 
+    required this.correo, 
+    required this.avatarColor
+  });
+
+  final String nombre;
+  final String telefono;
+  final String correo;
+  final Color avatarColor;
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +24,15 @@ class ContactInfo extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              
               //Widget para el avatar o foto de contacto
-              const CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 239, 45, 107),
+              CircleAvatar(
+                backgroundColor: avatarColor,
                 radius: 50,
                 child: Text(
-                  "P",
-                  style: TextStyle(
+                  nombre.isNotEmpty ? nombre[0].toUpperCase() : '',
+                  style: const TextStyle(
                     fontSize: 50, 
                     color: Colors.white,
                   ),
@@ -30,9 +41,9 @@ class ContactInfo extends StatelessWidget {
               const SizedBox(height: 40),
               
               //Text del nombre del contacto
-              const Text(
-                "Pascualillo",
-                style: TextStyle(
+              Text(
+                nombre,
+                style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w400
                   ),
@@ -157,7 +168,7 @@ class ContactInfo extends StatelessWidget {
                           Icons.call_outlined,
                           size: 28,
                         ),
-                        title: const Text('+504 9902-9311'),
+                        title: Text(telefono),
                         subtitle: const Text('Celular'),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -194,7 +205,7 @@ class ContactInfo extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            const Text('Enviar mensaje a +504 9902-9311',), 
+                            Text('Enviar mensaje a +$telefono',), 
                           ],
                         ),
                       ),
@@ -214,7 +225,7 @@ class ContactInfo extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            const Text('Llamar a +504 9902-9311',) 
+                            Text('Llamar a +$telefono',) 
                           ],
                         ),
                       ),
@@ -233,7 +244,7 @@ class ContactInfo extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            const Text('Videollamar a +504 9902-9311',), 
+                            Text('Videollamar a +$telefono',), 
                           ],
                         ),
                       ),
@@ -252,7 +263,7 @@ class ContactInfo extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            const Text('Mensaje al +50499029311',), 
+                            Text('Mensaje al +$telefono',), 
                           ],
                         ),
                       ),
@@ -271,7 +282,7 @@ class ContactInfo extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            const Text('Llamada de voz al +50499029311',) 
+                            Text('Llamada de voz al +$telefono',) 
                           ],
                         ),
                       ),
@@ -290,10 +301,29 @@ class ContactInfo extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            const Text('Videollamada al +50499029311',) 
+                            Text('Videollamada al +$telefono',) 
                           ],
                         ),
                       ),
+
+                      InkWell(
+                        onTap: () {},
+                        borderRadius: BorderRadius.circular(10),
+                        child: Row(
+                          children: [                           
+                            IconButton(
+                              onPressed: () {},
+                              highlightColor: Colors.transparent,
+                              icon: const Icon(
+                                Icons.mail
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text('Enviar correo a $correo',) 
+                          ],
+                        ),
+                      ),
+
                     ],
                   ),
                 ),

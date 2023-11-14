@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:libreta_contactos/my_routes.dart';
 
 
-
 class ContactPage extends StatelessWidget {
   ContactPage({super.key});
 
@@ -61,16 +60,24 @@ class ContactPage extends StatelessWidget {
                         Icons.person_add_alt_1_outlined,
                         color:  Color.fromARGB(255, 43, 118, 156),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          Routes.add
+                        );
+                      },
                       contentPadding: const EdgeInsets.only(left: 26.0),
                     );
                   } 
                   else 
                   {
-                    String inicial = contactos[index]['nombre'][0].toUpperCase();
-                    Color avatarColor = colores[Random().nextInt(colores.length)];
+                    String nombre = contactos[index]['nombre'];
+                    String telefono = contactos[index]['telefono'] ?? '';
+                    String correo = contactos[index]['correo'] ?? '';
+                    String inicial = nombre[0].toUpperCase();
+                    final Color avatarColor = colores[Random().nextInt(colores.length)];
                     return ListTile(
-                      title: Text(contactos[index]['nombre']),
+                      title: Text(nombre),
                       leading: CircleAvatar(
                         backgroundColor: avatarColor,
                         radius: 20,
@@ -85,7 +92,13 @@ class ContactPage extends StatelessWidget {
                       onTap: () {
                         Navigator.pushNamed(
                           context,
-                          Routes.details.name,
+                          Routes.details,
+                          arguments: {
+                            'nombre': nombre,
+                            'telefono': telefono,
+                            'correo': correo,
+                            'avatarColor': avatarColor,
+                          },
                         );
                       },
                     );

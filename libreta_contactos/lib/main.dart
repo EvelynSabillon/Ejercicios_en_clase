@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:libreta_contactos/my_routes.dart';
 
-
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -16,8 +15,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.lightGreen,
       ),
-      initialRoute: Routes.contacts.name,
-      routes: MyRoutes.routes,
+      initialRoute: Routes.contacts,
+      onGenerateRoute: MyRoutes.generateRoute,
     );
   }
 }
